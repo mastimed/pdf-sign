@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 
@@ -14,25 +14,6 @@ import AdPlaceholder from './components/AdPlaceholder';
 import { extractTextFromImage } from './services/geminiService';
 
 const App: React.FC = () => {
-    const [theme, setTheme] = useState(() => {
-        if (typeof window !== 'undefined' && window.localStorage) {
-            const storedTheme = window.localStorage.getItem('theme');
-            if (storedTheme) return storedTheme;
-            if (window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
-        }
-        return 'light';
-    });
-
-    useEffect(() => {
-        if (theme === 'dark') {
-            document.documentElement.classList.add('dark');
-            window.localStorage.setItem('theme', 'dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-            window.localStorage.setItem('theme', 'light');
-        }
-    }, [theme]);
-
     const [file, setFile] = useState<File | null>(null);
     const [imagePreview, setImagePreview] = useState<string | null>(null);
     const [extractedText, setExtractedText] = useState<string>('');
@@ -76,14 +57,10 @@ const App: React.FC = () => {
             const base64Data = await fileToBase64(file);
             const result = await extractTextFromImage(base64Data, file.type);
             setExtractedText(result);
-        } catch (err: any) { // Utilisez 'any' ou un type plus spécifique si vous préférez
-    console.error(err);
-    if (err.message.includes("VITE_GEMINI_API_KEY")) {
-        setError('Configuration error: The Gemini API key is not set up correctly.');
-    } else {
-        setError('Failed to extract text. Please ensure your API key is configured correctly and try again.');
-    }
-} finally {
+        } catch (err) {
+            console.error(err);
+            setError('Failed to extract text. Please ensure your API key is configured correctly and try again.');
+        } finally {
             setIsLoading(false);
         }
     }, [file]);
@@ -119,20 +96,20 @@ const App: React.FC = () => {
     const dismissError = () => setError(null);
 
     return (
-        <div className="antialiased font-sans text-slate-800 dark:text-slate-200">
+        <div className="antialiased font-sans text-slate-800">
             {isLoading && <Loader />}
-            <Header theme={theme} toggleTheme={() => setTheme(theme === 'dark' ? 'light' : 'dark')} />
+            <Header />
             <main>
                 <Hero onFileSelect={handleFileChange} />
                 
                 {error && (
                     <div className="container mx-auto px-4 md:px-8">
-                        <div className="bg-red-100 dark:bg-red-900/20 border-l-4 border-red-500 text-red-700 dark:text-red-300 p-4 mb-6 rounded-md shadow-md flex justify-between items-center" role="alert">
+                        <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6 rounded-md shadow-md flex justify-between items-center" role="alert">
                             <div>
                                 <p className="font-bold">Error</p>
                                 <p>{error}</p>
                             </div>
-                            <button onClick={dismissError} className="p-1 rounded-full hover:bg-red-200 dark:hover:bg-red-900/40" aria-label="Dismiss error">
+                            <button onClick={dismissError} className="p-1 rounded-full hover:bg-red-200" aria-label="Dismiss error">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" /></svg>
                             </button>
                         </div>
@@ -150,7 +127,6 @@ const App: React.FC = () => {
                         onOcr={handleOcr}
                         onGeneratePdf={handlePdfGeneration}
                         isLoading={isLoading}
-                        theme={theme}
                     />
                 )}
                 <AdPlaceholder />
