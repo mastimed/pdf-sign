@@ -20,7 +20,7 @@ const StoreButton: React.FC<{
             <img 
                 src={imageUrl} 
                 alt={altText} 
-                className={`h-10 ${isApple ? 'dark:invert' : ''}`}
+                className="h-10"
             />
         </a>
     );
@@ -44,24 +44,24 @@ const Footer: React.FC = () => {
     };
 
     return (
-        <footer className="bg-white dark:bg-gray-900 border-t border-slate-200 dark:border-gray-800">
+        <footer className="bg-white border-t border-slate-200">
             <div className="container mx-auto px-4 md:px-8 py-16">
                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
                     <div className="col-span-2 lg:col-span-2">
                         <a href="#" className="flex items-center space-x-2" aria-label="Back to homepage">
-                           <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-blue-600 dark:text-blue-500" viewBox="0 0 20 20" fill="currentColor">
+                           <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
                                 <path d="M9 2a2 2 0 00-2 2v8a2 2 0 002 2h2a2 2 0 002-2V4a2 2 0 00-2-2H9z" />
                                 <path fillRule="evenodd" d="M4 8a2 2 0 012-2h5v6H6a2 2 0 01-2-2V8zm12 0a2 2 0 00-2-2h-5v6h5a2 2 0 002-2V8z" clipRule="evenodd" />
                             </svg>
-                            <span className="text-xl font-bold text-slate-800 dark:text-white">
+                            <span className="text-xl font-bold text-slate-800">
                                 PDF Scanner Extra
                             </span>
                         </a>
-                        <p className="mt-4 text-sm text-slate-600 dark:text-slate-400 max-w-xs">
+                        <p className="mt-4 text-sm text-slate-600 max-w-xs">
                             An AI-powered document tool to scan, edit, and sign your documents with ease.
                         </p>
                         <div className="mt-6">
-                             <h4 className="font-semibold text-sm text-slate-800 dark:text-white">Get the App</h4>
+                             <h4 className="font-semibold text-sm text-slate-800">Get the App</h4>
                              <div className="mt-3 flex flex-col sm:flex-row lg:flex-col xl:flex-row items-start gap-3">
                                 <StoreButton platform="apple" href="#" />
                                 <StoreButton platform="google" href="#" />
@@ -71,11 +71,11 @@ const Footer: React.FC = () => {
 
                     {Object.entries(sections).map(([title, links]) => (
                         <div key={title}>
-                            <h3 className="font-semibold text-slate-800 dark:text-white">{title}</h3>
+                            <h3 className="font-semibold text-slate-800">{title}</h3>
                             <ul className="mt-4 space-y-3">
                                 {links.map((link) => (
                                     <li key={link.name}>
-                                        <a href={link.href} className="text-sm text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                        <a href={link.href} className="text-sm text-slate-600 hover:text-blue-600 transition-colors">
                                             {link.name}
                                         </a>
                                     </li>
@@ -85,8 +85,8 @@ const Footer: React.FC = () => {
                     ))}
                 </div>
             </div>
-            <div className="border-t border-slate-200 dark:border-gray-800 py-6">
-                <div className="container mx-auto px-4 md:px-8 text-center text-sm text-slate-500 dark:text-slate-400">
+            <div className="border-t border-slate-200 py-6">
+                <div className="container mx-auto px-4 md:px-8 text-center text-sm text-slate-500">
                     <p>&copy; {new Date().getFullYear()} PDF Scanner Extra. All rights reserved.</p>
                 </div>
             </div>
