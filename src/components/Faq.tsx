@@ -21,26 +21,26 @@ const faqData = [
 
 const Faq: React.FC = () => {
     return (
-        <section id="faq" className="py-16 sm:py-24 bg-slate-50 dark:bg-gray-900/50">
+        <section id="faq" className="py-16 sm:py-24 bg-slate-50">
             <div className="container mx-auto px-4 md:px-8">
                 <div className="text-center mb-12">
-                    <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-800 dark:text-white">
+                    <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-800">
                         Frequently Asked Questions
                     </h2>
-                    <p className="mt-4 text-lg text-slate-600 dark:text-slate-400">
+                    <p className="mt-4 text-lg text-slate-600">
                         Have questions? We have answers. If you can't find what you're looking for, feel free to contact us.
                     </p>
                 </div>
                 <div className="max-w-3xl mx-auto space-y-4">
                     {faqData.map((item, index) => (
-                        <details key={index} className="group bg-white dark:bg-gray-800 rounded-lg p-5 shadow-sm cursor-pointer" name="faq">
-                            <summary className="flex items-center justify-between font-semibold text-slate-800 dark:text-slate-100 list-none">
+                        <details key={index} className="group bg-white rounded-lg p-5 shadow-sm cursor-pointer" name="faq">
+                            <summary className="flex items-center justify-between font-semibold text-slate-800 list-none">
                                 {item.question}
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transition-transform duration-300 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                 </svg>
                             </summary>
-                            <p className="mt-3 text-slate-600 dark:text-slate-400">
+                            <p className="mt-3 text-slate-600">
                                 {item.answer}
                             </p>
                         </details>
