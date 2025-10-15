@@ -27,7 +27,7 @@ const StarRating: React.FC<{ rating: number }> = ({ rating }) => {
             {[...Array(5)].map((_, i) => (
                 <svg
                     key={i}
-                    className={`w-5 h-5 ${i < rating ? 'text-yellow-400' : 'text-gray-300 dark:text-gray-600'}`}
+                    className={`w-5 h-5 ${i < rating ? 'text-yellow-400' : 'text-gray-300'}`}
                     fill="currentColor"
                     viewBox="0 0 20 20"
                 >
@@ -41,26 +41,26 @@ const StarRating: React.FC<{ rating: number }> = ({ rating }) => {
 
 const Testimonials: React.FC = () => {
     return (
-        <section id="testimonials" className="py-16 sm:py-24 bg-white dark:bg-gray-900">
+        <section id="testimonials" className="py-16 sm:py-24 bg-white">
             <div className="container mx-auto px-4 md:px-8">
                 <div className="text-center mb-12">
-                    <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-800 dark:text-white">
+                    <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-800">
                         Loved by Professionals and Students
                     </h2>
-                    <p className="mt-4 text-lg text-slate-600 dark:text-slate-400">
+                    <p className="mt-4 text-lg text-slate-600">
                         Don't just take our word for it. See what our users are saying.
                     </p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {testimonials.map((testimonial, index) => (
-                        <div key={index} className="bg-slate-50 dark:bg-gray-800 rounded-lg p-6 shadow-sm">
+                        <div key={index} className="bg-slate-50 rounded-lg p-6 shadow-sm">
                             <StarRating rating={testimonial.stars} />
-                            <blockquote className="mt-4 text-slate-700 dark:text-slate-300">
+                            <blockquote className="mt-4 text-slate-700">
                                 "{testimonial.quote}"
                             </blockquote>
                             <figcaption className="mt-4">
-                                <p className="font-semibold text-slate-800 dark:text-white">{testimonial.name}</p>
-                                <p className="text-sm text-slate-500 dark:text-slate-400">{testimonial.role}</p>
+                                <p className="font-semibold text-slate-800">{testimonial.name}</p>
+                                <p className="text-sm text-slate-500">{testimonial.role}</p>
                             </figcaption>
                         </div>
                     ))}
