@@ -1,0 +1,5 @@
+{
+  "name": "PDF Scanner Extra: Sign & Edit",
+  "description": "An AI-powered document productivity tool. Upload an image of a document, extract text using OCR, edit the content, add your e-signature, and export it as a professional PDF. Perfect for contracts, forms, and notes.",
+  "requestFramePermissions": []
+}
