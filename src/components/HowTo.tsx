@@ -42,24 +42,24 @@ const steps = [
 
 const HowTo: React.FC = () => {
     return (
-        <section id="how-to" className="py-16 sm:py-24 bg-white dark:bg-gray-900">
+        <section id="how-to" className="py-16 sm:py-24 bg-white">
             <div className="container mx-auto px-4 md:px-8">
                 <div className="text-center mb-12">
-                    <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-800 dark:text-white">
+                    <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-800">
                         How It Works
                     </h2>
-                    <p className="mt-4 text-lg text-slate-600 dark:text-slate-400">
+                    <p className="mt-4 text-lg text-slate-600">
                         Get your documents done in four simple steps.
                     </p>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     {steps.map((step, index) => (
-                        <div key={index} className="text-center p-6 bg-slate-50 dark:bg-gray-800 rounded-lg">
-                            <div className="flex items-center justify-center h-16 w-16 mx-auto bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 rounded-full">
+                        <div key={index} className="text-center p-6 bg-slate-50 rounded-lg">
+                            <div className="flex items-center justify-center h-16 w-16 mx-auto bg-blue-100 text-blue-600 rounded-full">
                                 {step.icon}
                             </div>
-                            <h3 className="mt-5 text-xl font-semibold text-slate-800 dark:text-white">{step.title}</h3>
-                            <p className="mt-2 text-slate-600 dark:text-slate-400">{step.description}</p>
+                            <h3 className="mt-5 text-xl font-semibold text-slate-800">{step.title}</h3>
+                            <p className="mt-2 text-slate-600">{step.description}</p>
                         </div>
                     ))}
                 </div>
