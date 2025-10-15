@@ -2,10 +2,9 @@ import React, { useRef, useEffect, useState, useCallback } from 'react';
 
 interface SignaturePadProps {
     onSignatureChange: (dataUrl: string | null) => void;
-    theme: string;
 }
 
-const SignaturePad: React.FC<SignaturePadProps> = ({ onSignatureChange, theme }) => {
+const SignaturePad: React.FC<SignaturePadProps> = ({ onSignatureChange }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [isDrawing, setIsDrawing] = useState(false);
 
@@ -19,11 +18,11 @@ const SignaturePad: React.FC<SignaturePadProps> = ({ onSignatureChange, theme })
         canvas.width = rect.width;
         canvas.height = rect.height;
 
-        ctx.strokeStyle = theme === 'dark' ? '#e2e8f0' : '#334155'; // slate-200 for dark, slate-700 for light
+        ctx.strokeStyle = '#334155'; // slate-700 for light
         ctx.lineWidth = 2;
         ctx.lineCap = 'round';
         ctx.lineJoin = 'round';
-    }, [theme]);
+    }, []);
     
     useEffect(() => {
         configureCanvas();
@@ -96,17 +95,17 @@ const SignaturePad: React.FC<SignaturePadProps> = ({ onSignatureChange, theme })
     return (
         <div>
             <div className="flex justify-between items-center mb-2">
-                <label className="text-sm font-medium text-slate-600 dark:text-slate-300">E-Signature</label>
+                <label className="text-sm font-medium text-slate-600">E-Signature</label>
                 <button
                     onClick={clearSignature}
-                    className="text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-semibold"
+                    className="text-sm text-blue-600 hover:text-blue-800 font-semibold"
                 >
                     Clear
                 </button>
             </div>
             <canvas
                 ref={canvasRef}
-                className="w-full h-40 bg-slate-100 dark:bg-gray-800 rounded-lg border-2 border-slate-200 dark:border-gray-700 cursor-crosshair"
+                className="w-full h-40 bg-slate-100 rounded-lg border-2 border-slate-200 cursor-crosshair"
                 onMouseDown={startDrawing}
                 onMouseMove={draw}
                 onMouseUp={stopDrawing}
